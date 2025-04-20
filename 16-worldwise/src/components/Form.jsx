@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import styles from "./Form.module.css";
+import styles from "./styles/Form.module.css";
 import Button from "./Button";
 import BackButton from "./BackButton";
 

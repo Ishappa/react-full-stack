@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./CountryList.module.css";
+import styles from "./styles/CountryList.module.css";
 import Spinner from "./Spinner";
 import Message from "./Message";
 import CountryItem from "./CountryItem";
