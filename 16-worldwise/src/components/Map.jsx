@@ -12,6 +12,7 @@ import {
 import { useCities } from "../contexts/CitiesContext";
 import { useGeolocation } from "../hooks/useGeoLocation";
 import Button from "./Button";
+import { useUrlPosition } from "../hooks/useUrlPosition";
 
 export default function Map() {
   const { cities } = useCities();
@@ -21,10 +22,11 @@ export default function Map() {
     isLoading: isLoadingPosition,
     position: geolocationPosition,
     getPosition,
-    error,
   } = useGeolocation();
-  const mapLat = searchParams.get("lat");
-  const mapLng = searchParams.get("lng");
+  const [mapLat, mapLng] = useUrlPosition();
+
+  // const mapLat = searchParams.get("lat");
+  // const mapLng = searchParams.get("lng");
 
   useEffect(() => {
     if (mapLat && mapLng) setMapPosition([mapLat, mapLng]);
@@ -81,7 +83,7 @@ export default function Map() {
     const navigate = useNavigate();
     useMapEvents({
       click: (e) => {
-        console.log(e, "hello");
+        // console.log(e, "hello");
         navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
       },
     });
