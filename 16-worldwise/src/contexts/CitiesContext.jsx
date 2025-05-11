@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import {
   createContext,
   useContext,
@@ -97,7 +98,7 @@ function CitiesProvider({ children }) {
 
   // Getting Cities-----------------------
 
-  async function getCity(id) {
+  const getCity = useCallback(async function getCity(id) {
     if (id === currentCity.id) {
       // console.log("Same city already loaded, skipping fetch!");  // ✅
       return;
@@ -111,7 +112,7 @@ function CitiesProvider({ children }) {
     } catch {
       dispatch({ type: "rejected", payload: "error while loading city..." });
     }
-  }
+  },[currentCity.id])
 
   // Adding new City-----------------------
   async function createCity(newCity) {
